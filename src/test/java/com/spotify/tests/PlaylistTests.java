@@ -27,7 +27,7 @@ public class PlaylistTests extends BaseTest{
         Response response = PlaylistApi.post(requestPlaylist);
 
         assertStatusCode(response.statusCode(), StatusCode.CODE_201);
-
+        // Test
 
         assertPlaylistEqual(response.as(Playlist.class), requestPlaylist);
 
