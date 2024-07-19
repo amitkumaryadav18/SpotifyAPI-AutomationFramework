@@ -1,5 +1,6 @@
 package com.spotify.api;
 
+import com.spotify.utils.ConfigLoader;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -14,9 +15,9 @@ public class SpecBuilder {
 
 
     public static RequestSpecification getRequestSpec(){
-        System.out.println("BaseURI :"+ System.getProperty("BASE_URI"));
+        System.out.println("BaseURI :"+ ConfigLoader.getInstance().configProperties.baseURI()); // Or System.getProperty("BASE_URI")
         return new RequestSpecBuilder().
-                setBaseUri(System.getProperty("BASE_URI")).
+                setBaseUri(ConfigLoader.getInstance().configProperties.baseURI()).
                 //setBaseUri("https://api.spotify.com").
                 setBasePath(BASE_PATH).
                 setContentType(ContentType.JSON).
@@ -26,9 +27,9 @@ public class SpecBuilder {
     }
 
     public static RequestSpecification getAccountRequestSpec(){
-        System.out.println("ACCOUTN BaseURI :"+ System.getProperty("ACCOUNTS_BASE_URI"));
+        System.out.println("ACCOUNT BaseURI :"+ ConfigLoader.getInstance().configProperties.accountsBaseURI());
         return new RequestSpecBuilder().
-                setBaseUri(System.getProperty("ACCOUNTS_BASE_URI")).
+                setBaseUri(ConfigLoader.getInstance().configProperties.accountsBaseURI()).
                 //setBaseUri("https://accounts.spotify.com").
                 setContentType(ContentType.URLENC).
                 addFilter(new AllureRestAssured()).

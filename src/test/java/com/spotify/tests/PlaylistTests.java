@@ -4,7 +4,7 @@ import com.spotify.api.StatusCode;
 import com.spotify.api.applicationApi.PlaylistApi;
 import com.spotify.pojo.Error;
 import com.spotify.pojo.Playlist;
-import com.spotify.utils.DataLoader;
+import com.spotify.utils.ConfigLoader;
 import com.spotify.utils.FakerUtils;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
@@ -38,7 +38,7 @@ public class PlaylistTests extends BaseTest{
 
         Playlist requestPlaylist = playlistBuilder("New TestPlaylist","New playlist description",true);
 
-        Response response = PlaylistApi.get(DataLoader.getInstance().getGetPlaylistId());
+        Response response = PlaylistApi.get(ConfigLoader.getInstance().dataProperties.getPlaylistId());
         assertStatusCode(response.statusCode(), StatusCode.CODE_200);
 
         assertPlaylistEqual(response.as(Playlist.class), requestPlaylist);
@@ -48,7 +48,7 @@ public class PlaylistTests extends BaseTest{
     public void shouldBeAbleToUpdateAPlaylist(){
         Playlist requestPlaylist = playlistBuilder(FakerUtils.generateName(),FakerUtils.generateDescription(),false);
 
-        Response response = PlaylistApi.update(DataLoader.getInstance().getUpdatePlaylistId(),requestPlaylist);
+        Response response = PlaylistApi.update(ConfigLoader.getInstance().dataProperties.getUpdatePlaylistId(),requestPlaylist);
 
         assertStatusCode(response.statusCode(),  StatusCode.CODE_200);
     }

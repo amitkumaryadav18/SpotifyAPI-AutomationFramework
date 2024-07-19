@@ -1,14 +1,20 @@
 package com.spotify.utils;
 
-import java.util.Properties;
+import org.aeonbits.owner.ConfigFactory;
 
 public class ConfigLoader {
 
-    private final Properties properties;
     private static ConfigLoader configLoader;
 
+    public SecretsLoader secretConfig;
+    public ConfigProperties configProperties;
+    public DataProperties dataProperties;
+
     private ConfigLoader(){
-        properties = PropertyUtils.propertyLoader("src/test/resources/config.properties");
+        secretConfig = ConfigFactory.create(SecretsLoader.class);
+        configProperties = ConfigFactory.create(ConfigProperties.class);
+        dataProperties = ConfigFactory.create(DataProperties.class);
+        System.out.println("Config: "+ secretConfig.user_id());
     }
 
     public static ConfigLoader getInstance(){
@@ -16,32 +22,5 @@ public class ConfigLoader {
             configLoader = new ConfigLoader();
         }
         return configLoader;
-    }
-
-    public String getClientId(){
-        String prop = properties.getProperty("client_id");
-        if(prop != null) return prop;
-        else throw new RuntimeException("property client_id is not specified in the config file");
-    }
-
-    public String getClientSecret(){
-        String prop = properties.getProperty("client_secret");
-        if(prop != null) return prop;
-        else throw new RuntimeException("property client_secret is not specified in the config file");
-    }
-    public String getRefreshToken(){
-        String prop = properties.getProperty("refresh_token");
-        if(prop != null) return prop;
-        else throw new RuntimeException("property refresh_token is not specified in the config file");
-    }
-    public String getGrantType(){
-        String prop = properties.getProperty("grant_type");
-        if(prop != null) return prop;
-        else throw new RuntimeException("property grant_type is not specified in the config file");
-    }
-    public String getUserId(){
-        String prop = properties.getProperty("user_id");
-        if(prop != null) return prop;
-        else throw new RuntimeException("property user_id is not specified in the config file");
     }
 }
