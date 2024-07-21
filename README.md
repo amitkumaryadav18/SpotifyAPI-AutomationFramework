@@ -51,4 +51,15 @@ Some of the highlights for the clean code in this framework are -
 - Automated access token renewal. TokenManager handles the automatic renewal of tokens only once when token is expired which is efficient.
 - Integration with Jenkins and github. Also, using Git hooks whenever there is a commit, regression is triggered on jenkins.
 
-Here's a screenshot of jenkins execution -
+Here are few screenshots of jenkins execution -
+
+![image](https://github.com/user-attachments/assets/3f323238-6331-4ff2-8b7a-8c1d8114863a)
+We can see that the run was started by Github webhooks
+
+
+![image](https://github.com/user-attachments/assets/bd25e314-1cb2-47d3-abf4-1b0d9f97cfce)
+We can see trends, overall tests on overview of allure report
+
+
+![image](https://github.com/user-attachments/assets/fb46dce9-02cb-437e-961d-2f5bba898f13)
+We also have detailed request/ response logs for each test to further debug/ investigate incase of an issue.
