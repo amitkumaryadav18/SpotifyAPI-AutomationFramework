@@ -6,7 +6,7 @@ import org.aeonbits.owner.Config;
 @Config.Sources({
         "system:properties",
         "system:env",
-        "file:src/test/resources/config.properties"}
+        "file:src/test/resources/data.properties"}
 )
 public interface DataProperties extends Config {
     @Key("get_playlist_id")
@@ -14,4 +14,10 @@ public interface DataProperties extends Config {
 
     @Key("update_playlist_id")
     String getUpdatePlaylistId();
+
+    @Key("add_uri_1")
+    String getAddUriOne();
+
+    @Key("add_uri_2")
+    String getAddUriTwo();
 }

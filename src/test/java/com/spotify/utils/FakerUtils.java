@@ -11,6 +11,6 @@ public class FakerUtils {
 
     public static String generateDescription(){
         Faker faker = new Faker();
-        return "Description " +faker.regexify("[A-Za-z0-9_@./#&+-]{20}");
+        return "Description " +faker.regexify("[A-Za-z0-9#+-]{10}");
     }
 }

@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 
 import static com.spotify.api.Route.API;
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.spotify.api.Route.TOKEN;
 import static com.spotify.api.SpecBuilder.*;
@@ -44,6 +45,17 @@ public class RestResource {
                 response();
     }
 
+    public static Response getWithParams(String path, String token, Map<String, Object> params){
+        return  given(getRequestSpec()).
+                auth().oauth2(token).
+                    params(params).
+                when().
+                get(path).
+                then().spec(getResponseSpec()).
+                extract().
+                response();
+    }
+
     public static Response update( String path, String token, Playlist reqData){
         return given(getRequestSpec()).
                 body(reqData).
@@ -51,6 +63,17 @@ public class RestResource {
             when().
                 put(path).
             then().spec(getResponseSpec()).
+                extract().
+                response();
+    }
+
+    public static Response update( String path, String token, Object reqData){
+        return given(getRequestSpec()).
+                body(reqData).
+                auth().oauth2(token).
+                when().
+                put(path).
+                then().spec(getResponseSpec()).
                 extract().
                 response();
     }
