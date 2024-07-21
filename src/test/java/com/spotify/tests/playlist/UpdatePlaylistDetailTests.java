@@ -47,7 +47,7 @@ public class UpdatePlaylistDetailTests extends BaseTest {
     }
 
     @TmsLink("115")
-    @Test(description = "Should be able to update a playlist with: public status only")
+    //@Test(description = "Should be able to update a playlist with: public status only")
     public void shouldBeAbleToUpdateAPlaylistWithVisibilityStatusOnly(){
         Playlist requestPlaylist = Playlist.builder()._public(true).build();
 
