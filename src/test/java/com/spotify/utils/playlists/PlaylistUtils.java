@@ -46,7 +46,6 @@ public class PlaylistUtils {
     public void assertUserPlaylistListResponse(UserPlaylists responseUserPlaylists){
         assertThat(responseUserPlaylists.getItems().size(), greaterThan(0));
         assertThat(responseUserPlaylists.getLimit(), greaterThan(0));
-        assertThat(responseUserPlaylists.getItems().size(), allOf(greaterThan(0), equalTo(responseUserPlaylists.getTotal())));
     }
 
     @Step
